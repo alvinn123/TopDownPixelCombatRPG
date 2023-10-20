@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 96dc94f4d447f6440b9f3cd526d29fa4
+guid: d0b585f6057862143a58b7b25502fb59
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - destroyVFX: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
