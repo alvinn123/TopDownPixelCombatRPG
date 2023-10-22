@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 1323043095547372081}
   - component: {fileID: 2333476632217287848}
   - component: {fileID: 6050035151448410183}
+  - component: {fileID: 3326725952887138185}
+  - component: {fileID: 4727249563589864243}
+  - component: {fileID: 5857478466088273078}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -166,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aae72faced552449cdcac594e9e999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roamChangeDirFloat: 2
 --- !u!114 &7288214452514972089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   deathVFXPrefab: {fileID: 1565934677364379450, guid: eb056b870a87f1f48b52b0d02711e9d9, type: 3}
+  knockBackThrust: 15
 --- !u!114 &2333476632217287848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +225,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: b7fcdb124236d604688d003965676aac, type: 2}
   restoreDefaultMatTime: 0.1
+--- !u!95 &3326725952887138185
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670043959136827381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ba89ca54313e1e42ba4517a5a9ef2a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4727249563589864243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670043959136827381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8854d23bd554ec94cafcbb583d305071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!210 &5857478466088273078
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670043959136827381}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &8513507085840952984
 GameObject:
   m_ObjectHideFlags: 0
