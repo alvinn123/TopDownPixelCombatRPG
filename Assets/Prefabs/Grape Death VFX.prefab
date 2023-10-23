@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7799671813452295762}
   - component: {fileID: 643100046089166263}
   m_Layer: 0
-  m_Name: Slime Death VFX
+  m_Name: Grape Death VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9528302, g: 0.5348434, b: 0.8741806, a: 1}
+      maxColor: {r: 0.77893937, g: 0.4292453, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
