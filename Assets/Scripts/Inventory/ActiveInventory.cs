@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ActiveInventory : MonoBehaviour
+public class ActiveInventory : Singleton<ActiveInventory>
 {
     private int activeSlotIndexNum = 0;
 
     private PlayerControls playerControls;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         playerControls = new PlayerControls();
     }
 
     private void Start()
     {
         playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
-
+    }
+    public void EquipStartingWeapon()
+    {
         ToggleActiveHighlight(0);
     }
 
@@ -47,15 +50,11 @@ public class ActiveInventory : MonoBehaviour
 
     private void ChangeActiveWeapon()
     {
+        if (PlayerHealth.Instance.IsDead) { return; }
+
         if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
         {
             Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
-        }
-
-        if (transform.GetChild(activeSlotIndexNum).GetComponentInChildren<InventorySlot>().GetWeaponInfo() == null)
-        {
-            ActiveWeapon.Instance.WeaponNull();
-            return;
         }
 
         Transform childTransform = transform.GetChild(activeSlotIndexNum);
@@ -63,9 +62,15 @@ public class ActiveInventory : MonoBehaviour
         WeaponInfo weaponInfo = inventorySlot.GetWeaponInfo();
         GameObject weaponToSpawn = weaponInfo.weaponPrefab;
 
+        if (weaponInfo == null)
+        {
+            ActiveWeapon.Instance.WeaponNull();
+            return;
+        }
+
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
-        ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
-        newWeapon.transform.parent = ActiveWeapon.Instance.transform;
+        //ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //newWeapon.transform.parent = ActiveWeapon.Instance.transform;
 
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }

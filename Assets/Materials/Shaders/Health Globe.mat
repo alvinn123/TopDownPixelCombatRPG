@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Purple
+  m_Name: Health Globe
   m_Shader: {fileID: -6465566751694194690, guid: dc58c550e859b144188c4b9c2c2986f5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 13.478743, g: 3.320755, b: 64, a: 0}
+    - _Color: {r: 7.182595, g: 4.370541, b: 4.40987, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5340982927629639718
 MonoBehaviour:
