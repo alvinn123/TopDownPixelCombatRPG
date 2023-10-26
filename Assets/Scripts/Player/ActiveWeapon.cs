@@ -10,6 +10,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     private float timeBetweenAttacks;
 
     private bool attackButtonDown, isAttacking = false;
+    private Transform weaponTransform;
 
     protected override void Awake()
     {
@@ -25,6 +26,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     // Start is called before the first frame update
     private void Start()
     {
+        weaponTransform = transform.GetChild(0);
         playerControls.Combat.Attack.started += _ => StartAttacking();
         playerControls.Combat.Attack.canceled += _ => StopAttacking();
 
@@ -33,7 +35,22 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
 
     private void Update()
     {
+        // Check the mouse position
+        Vector3 mousePosition = Input.mousePosition;
+
+        // Convert the mouse position from screen space to world space
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Attack();
+        if (worldMousePosition.x < transform.position.x)
+        {
+            // Flip the weapon to the left
+            weaponTransform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            // Reset the weapon's scale to its original state
+            weaponTransform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     public void NewWeapon(MonoBehaviour newWeapon)

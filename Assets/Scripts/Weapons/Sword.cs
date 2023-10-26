@@ -8,6 +8,7 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private WeaponInfo weaponInfo;
+    [SerializeField] private AudioSource swordSlashSound;
     
     private Transform weaponCollider;
     private Animator myAnimator;
@@ -37,11 +38,12 @@ public class Sword : MonoBehaviour, IWeapon
 
     // Sets trigger for character to attack
     public void Attack()
-    {       
-            myAnimator.SetTrigger("Attack");
-            weaponCollider.gameObject.SetActive(true);
-            slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
-            slashAnim.transform.parent = this.transform.parent;
+    {
+        myAnimator.SetTrigger("Attack");
+        weaponCollider.gameObject.SetActive(true);
+        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
+        slashAnim.transform.parent = this.transform.parent;
+        swordSlashSound.Play();
     }
 
     public void DoneAttackingAnimEvent()

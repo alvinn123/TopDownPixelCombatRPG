@@ -69,8 +69,9 @@ public class ActiveInventory : Singleton<ActiveInventory>
         }
 
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
-        //ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //newWeapon.transform.parent = ActiveWeapon.Instance.transform;
+        ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
+       
+        newWeapon.transform.parent = ActiveWeapon.Instance.transform;
 
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }

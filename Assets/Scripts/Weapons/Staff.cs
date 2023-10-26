@@ -7,6 +7,7 @@ public class Staff : MonoBehaviour, IWeapon
     [SerializeField] private WeaponInfo weaponInfo;
     [SerializeField] private GameObject magicLaser;
     [SerializeField] private Transform magicLaserSpawnPoint;
+    [SerializeField] private AudioSource magicLaserSound;
 
     private Animator myAnimator;
 
@@ -22,6 +23,7 @@ public class Staff : MonoBehaviour, IWeapon
     public void Attack()
     {
         myAnimator.SetTrigger(ATTACK_HASH);
+        magicLaserSound.Play();
     }
 
     public void SpawnStaffProjectileAnimEvent()

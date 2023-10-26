@@ -12,6 +12,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private TrailRenderer myTrailRenderer;
     [SerializeField] private Transform weaponCollider;
+    [SerializeField] private AudioSource dashSoundEffect;
 
     private PlayerControls playerControls;
     private Vector2 movement;
@@ -76,7 +77,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Move()
     {
-        if (knockback.GettingKnockedBack || PlayerHealth.Instance.IsDead) { return; }
+        if (knockback.GettingKnockedBack || PlayerHealth.Instance.IsDead) { return; } // Can't move if getting knocked back or deadge
 
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
@@ -104,6 +105,7 @@ public class PlayerController : Singleton<PlayerController>
             moveSpeed *= dashSpeed;
             myTrailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
+            dashSoundEffect.Play();
         }
     }
 
