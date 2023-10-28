@@ -14,7 +14,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private Slider healthSlider;
     private int currentHealth;
-    private bool canTakeDamage = true;
+    public bool canTakeDamage = true; // Made this public so PlayerController can access
 
     private Knockback knockback;
     private Flash flash;

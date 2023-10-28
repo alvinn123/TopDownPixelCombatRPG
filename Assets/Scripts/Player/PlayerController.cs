@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -13,6 +14,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private TrailRenderer myTrailRenderer;
     [SerializeField] private Transform weaponCollider;
     [SerializeField] private AudioSource dashSoundEffect;
+ 
 
     private PlayerControls playerControls;
     private Vector2 movement;
@@ -23,7 +25,7 @@ public class PlayerController : Singleton<PlayerController>
     private float startingMoveSpeed;
 
     private bool facingLeft = false;
-    private bool isDashing = false;
+    public bool isDashing = false;
 
     protected override void Awake()
     {
@@ -106,8 +108,11 @@ public class PlayerController : Singleton<PlayerController>
             myTrailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
             dashSoundEffect.Play();
+
+            PlayerHealth.Instance.canTakeDamage = false; // Turn off canTakeDamage
         }
     }
+
 
     private  IEnumerator EndDashRoutine()
     {
@@ -118,5 +123,6 @@ public class PlayerController : Singleton<PlayerController>
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
+        PlayerHealth.Instance.canTakeDamage = true; // Re-enable canTakeDamage
     }
 }
