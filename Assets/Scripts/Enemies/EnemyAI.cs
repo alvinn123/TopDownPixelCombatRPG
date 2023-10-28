@@ -81,6 +81,7 @@ public class EnemyAI : MonoBehaviour
         if (attackRange !=0 && canAttack)
         {
             canAttack = false;
+            Debug.Log(enemyType as IEnemy);
             (enemyType as IEnemy).Attack();
 
             if (stopMovingWhileAttacking)
