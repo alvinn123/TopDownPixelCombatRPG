@@ -36,10 +36,10 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(flash.GetRestoreMatTime());
         DetectDeath();
     }
-    // Checks for health of the slime
-    private void DetectDeath()
+
+    public void DetectDeath()
     {
-        if(currentHealth <= 0)
+        if(currentHealth <= 0 && gameObject)
         {
             Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             GetComponent<PickUpSpawner>().DropItems();

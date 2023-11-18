@@ -1,4 +1,4 @@
 interface IEnemy
 {
-    public void Attack();
+    public abstract void Attack();
 }

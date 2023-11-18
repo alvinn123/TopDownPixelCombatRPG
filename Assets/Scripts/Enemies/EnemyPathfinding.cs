@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyPathfinding : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private bool isFacingLeftByDefault = false;
 
     private Rigidbody2D rb;
     private Vector2 moveDir;
@@ -14,8 +15,8 @@ public class EnemyPathfinding : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-       knockback = GetComponent<Knockback>();
-       rb = GetComponent<Rigidbody2D>();
+        knockback = GetComponent<Knockback>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -23,12 +24,13 @@ public class EnemyPathfinding : MonoBehaviour
         if (knockback.GettingKnockedBack) { return; }
         rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
 
-        if (moveDir.x < 0)
+        if (isFacingLeftByDefault)
         {
-            spriteRenderer.flipX = true;
-        } else if (moveDir.x > 0)
+            spriteRenderer.flipX = moveDir.x > 0;
+        }
+        else
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = moveDir.x < 0;
         }
     }
 

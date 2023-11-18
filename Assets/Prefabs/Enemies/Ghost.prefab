@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  isFacingLeftByDefault: 0
 --- !u!114 &1830758635605015186
 MonoBehaviour:
   m_ObjectHideFlags: 0

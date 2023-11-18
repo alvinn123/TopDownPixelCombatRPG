@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float roamChangeDirFloat = 2f;
-    [SerializeField] private float attackRange = 0f;
+    [SerializeField] private float attackRange = 5f; // Adjust the attack range as needed
     [SerializeField] private MonoBehaviour enemyType;
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private bool stopMovingWhileAttacking = false;
@@ -54,42 +55,47 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-
     private void Roaming()
     {
         timeRoaming += Time.deltaTime;
 
         enemyPathfinding.MoveTo(roamPosition);
-        
-        if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) < attackRange)
+
+        float distanceToPlayer = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
+
+        if (distanceToPlayer < attackRange)
         {
             state = State.Attacking;
         }
 
-        if(timeRoaming > roamChangeDirFloat)
+        if (timeRoaming > roamChangeDirFloat)
         {
             roamPosition = GetRoamingPosition();
         }
     }
+
     private void Attacking()
     {
-        if (Vector2.Distance(transform.position, PlayerController.Instance.transform.position) > attackRange)
+        float distanceToPlayer = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
+
+        if (distanceToPlayer > attackRange)
         {
             state = State.Roaming;
         }
 
-        if (attackRange !=0 && canAttack)
+        if (attackRange != 0 && canAttack)
         {
             canAttack = false;
-            Debug.Log(enemyType as IEnemy);
             (enemyType as IEnemy).Attack();
 
             if (stopMovingWhileAttacking)
             {
                 enemyPathfinding.StopMoving();
-            } else
+            }
+            else
             {
-                enemyPathfinding.MoveTo(roamPosition);
+                // Move towards the player when attacking
+                enemyPathfinding.MoveTo(PlayerController.Instance.transform.position);
             }
 
             StartCoroutine(AttackCooldownRoutine());
@@ -106,5 +112,14 @@ public class EnemyAI : MonoBehaviour
     {
         timeRoaming = 0f;
         return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the collision involves a wall
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("AI collided with the wall.");
+        }
     }
 }
