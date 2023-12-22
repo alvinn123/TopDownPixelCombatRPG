@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 24915200}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17407,7 +17407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4645824038956594547, guid: 8d1e1c65ed49f634785794c28e25fe4e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.152585
+      value: 11.143056
       objectReference: {fileID: 0}
     - target: {fileID: 4760209927453596153, guid: 8d1e1c65ed49f634785794c28e25fe4e, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
